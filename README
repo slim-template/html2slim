@@ -1,0 +1,9 @@
+Pre-alpha script for converting HTML (or sHTML) files to slim (slim-lang.org).
+
+It's not perfect, but certainly it helps a lot!
+
+It's based on Hpricot. Yeah, I'm old school.
+
+USAGE:
+
+./html2slim file.html file.slim
