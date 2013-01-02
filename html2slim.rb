@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 unless(ARGV[0])
-  puts "Passe o caminho do arquivo sHTML"
+  puts "You should provide the HTML file path"
   exit
 end
 
