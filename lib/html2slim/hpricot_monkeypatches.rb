@@ -1,5 +1,7 @@
 require 'hpricot'
 
+Hpricot::XHTMLTransitional.tagset[:ruby] = [:code]
+# raise Hpricot::XHTMLTransitional.tagset.inspect
 class Hpricot::BogusETag
   def to_slim(lvl=0)
     nil
@@ -8,22 +10,14 @@ end
 
 class Hpricot::Text
   def to_slim(lvl=0)
-    if to_s.strip.empty?
-      nil
-    else
-      ('  ' * lvl) + %(| #{to_s.gsub(/\s+/, ' ')})
-    end
+    return nil if to_s.strip.empty?
+    ('  ' * lvl) + %(| #{to_s.gsub(/\s+/, ' ')})
   end
 end
 
 class Hpricot::Comment
   def to_slim(lvl=0)
-    # For SHTML <!--#include virtual="foo.html" -->
-    if self.content =~ /include (file|virtual)="(.+)"/
-      ('  ' * lvl) + "= render '#{$~[2]}'"
-    else
-      nil
-    end
+    nil
   end
 end
 
@@ -36,6 +30,14 @@ end
 class Hpricot::Elem
   def slim(lvl=0)
     r = ('  ' * lvl)
+    if self.name == "ruby"
+      if self.attributes["code"].strip[0] == "="
+        return r += self.attributes["code"].strip
+      else
+        return r += "- " + self.attributes["code"].strip
+      end
+    end
+
     r += self.name unless self.name == 'div' and (self.has_attribute?('id') || self.has_attribute?('class'))
     r += "##{self['id']}" if self.has_attribute?('id')
     self.remove_attribute('id')    

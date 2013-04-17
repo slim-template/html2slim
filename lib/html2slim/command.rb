@@ -80,10 +80,15 @@ module HTML2Slim
                 end
 
       @options[:output] = slim_file && slim_file != '-' ? File.open(slim_file, 'w') : $stdout
-      @options[:output].puts HTML2Slim.convert!(in_file)
+      # raise "|||#{self.class.inspect}|||"
+      @options[:output].puts HTML2Slim.convert!(in_file, (self.class.to_s =~ /ERB/ ? :erb : :html))
       @options[:output].close
 
       File.delete(file) if @options[:delete]
     end
+  end
+  class HTMLCommand < Command
+  end
+  class ERBCommand < Command
   end
 end

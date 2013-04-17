@@ -3,5 +3,5 @@
 $:.unshift File.dirname(__FILE__) + '/../lib'
 require 'html2slim/command'
 
-cmd = HTML2Slim::HTMLCommand.new(ARGV)
+cmd = HTML2Slim::ERBCommand.new(ARGV)
 cmd.run
