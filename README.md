@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/slim-template/html2slim.png?branch=master)](https://travis-ci.org/slim-template/html2slim)
 
-![Code climate](https://codeclimate.com/github/slim-template/html2slim.png)
+[![Code climate](https://codeclimate.com/github/slim-template/html2slim.png)](https://codeclimate.com/github/slim-template/html2slim)
 
 ## HTML2Slim
 
