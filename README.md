@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/slim-template/html2slim.png?branch=master)](https://travis-ci.org/slim-template/html2slim)
 
+![Code climate](https://codeclimate.com/github/slim-template/html2slim.png)
+
 ## HTML2Slim
 
 Script for converting HTML (or sHTML) files to slim (slim-lang.org).
