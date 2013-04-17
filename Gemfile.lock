@@ -1,0 +1,18 @@
+PATH
+  remote: .
+  specs:
+    html2slim (0.0.1)
+      hpricot
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    hpricot (0.8.6)
+    minitest (4.7.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  html2slim!
+  minitest

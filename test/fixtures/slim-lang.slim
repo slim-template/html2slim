@@ -1,0 +1,148 @@
+doctype
+html[xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"]
+  head
+    meta[http-equiv="Content-Type" content="text/html; charset=utf-8"]
+    meta[name="description" content="Slim is a template language whose goal is reduce html syntax to the essential parts without becoming cryptic."]
+    link[href="css/slim.css" media="screen" rel="stylesheet" type="text/css"]
+    title
+      | Slim - A Fast, Lightweight Template Engine for Ruby
+  body
+    #side
+      .wrap
+        h1
+          | Slim > Home
+        h2#slogan
+          | A lightweight templating engine
+        ul#links
+          li
+            a.active[href="index.html"]
+              | Home
+          li
+            a[href="about.html"]
+              | About
+          li
+            a[href="http://rdoc.info/github/slim-template/slim"]
+              | Docs
+          li
+            a[href="http://rdoc.info/github/slim-template/slim#logicless"]
+              | Logic less
+          li
+            a[href="contribute.html"]
+              | Contribute
+          li.last
+            a[href="http://rdoc.info/github/slim-template/slim/master/frames"]
+              | API
+        p
+          a.github[href="https://github.com/slim-template/slim"]
+            | slim-template
+            span
+              | /
+            strong
+              | slim
+        p
+          a[href="http://rubygems.org/gems/slim"]
+            img[src="https://badge.fury.io/rb/slim.png"]
+          a[href="http://travis-ci.org/slim-template/slim" title="Build Status"]
+            img[src="https://secure.travis-ci.org/slim-template/slim.png?branch=master"]
+          br
+          a[href="https://gemnasium.com/slim-template/slim" title="Dependency Status"]
+            img[src="https://gemnasium.com/slim-template/slim.png?travis"]
+          a[href="https://codeclimate.com/github/slim-template/slim" title="Code Climate"]
+            img[src="https://codeclimate.com/github/slim-template/slim.png"]
+    #main.home
+      .wrap
+        pre
+          code
+            span.tag
+              | doctype
+            |  html 
+            span.tag
+              | html
+            span.tag
+              | head
+            span.tag
+              | title
+            |  Slim Examples 
+            span.tag
+              | meta
+            |  name=
+            span.string
+              | "keywords"
+            |  content=
+            span.string
+              | "template language"
+            span.tag
+              | meta
+            |  name=
+            span.string
+              | "author"
+            |  content=author 
+            span.filter
+              | javascript:
+            |  alert('Slim supports embedded javascript!') 
+            span.tag
+              | body
+            span.tag
+              | h1
+            |  Markup examples 
+            span.tag
+              | #content
+            span.tag
+              | p
+            |  This example shows you how a basic Slim file looks like. == 
+            span.keyword
+              | yield
+            |  - 
+            span.keyword
+              | unless
+            |  items.empty? 
+            span.tag
+              | table
+            |  - 
+            span.keyword
+              | for
+            |  item 
+            span.keyword
+              | in
+            |  items 
+            span.keyword
+              | do
+            span.tag
+              | tr
+            span.tag
+              | td.name
+            |  = item.name 
+            span.tag
+              | td.price
+            |  = item.price - 
+            span.keyword
+              | else
+            span.tag
+              | p
+            |  | No items found. Please add some inventory. Thank you! 
+            span.tag
+              | div
+            |  id=
+            span.string
+              | "footer"
+            |  = 
+            span.keyword
+              | render
+            span.string
+              | 'footer'
+            |  | Copyright © #{year} #{author} 
+      p.foot.up
+        |  Source: 
+        a[href="http://github.com/slim-template/slim"]
+          | slim-template/slim
+        |  | Slim maintained by 
+        a[href="http://github.com/minad"]
+          | minad
+        |  | Logo & design by 
+        a[href="http://github.com/activestylus"]
+          | activestylus
+        br
+    a#forkme[href="http://github.com/slim-template/slim"]
+      | Fork me on Github
+    script[type="text/javascript"]
+      |  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www."); document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E")); try { var pageTracker = _gat._getTracker("UA-19270476-1"); pageTracker._trackPageview(); } catch(err) {} 
