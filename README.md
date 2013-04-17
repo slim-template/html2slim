@@ -4,7 +4,7 @@
 
 ## HTML2Slim
 
-Script for converting HTML (or sHTML) files to slim (slim-lang.org).
+Script for converting HTML and ERB files to slim (slim-lang.org).
 
 It's not perfect, but certainly it helps a lot!
 
@@ -12,7 +12,7 @@ It's based on Hpricot. Yeah, I'm old school.
 
 ## Usage
 
-You may convert files using the included executable `html2slim`.
+You may convert files using the included executables `html2slim` and `erb2slim`.
 
     # html2slim -h
 
@@ -22,7 +22,15 @@ You may convert files using the included executable `html2slim`.
         -h, --help                       Show this message
         -v, --version                    Print version
 
-Alternatively, to convert files or strings on the fly in your application, you may do so by calling `HTML2Slim.convert!`.
+    # erb2slim -h
+
+    Usage: erb2slim INPUT_FILENAME_OR_DIRECTORY [OUTPUT_FILENAME_OR_DIRECTORY] [options]
+            --trace                      Show a full traceback on error
+        -d, --delete                     Delete ERB files
+        -h, --help                       Show this message
+        -v, --version                    Print version
+
+Alternatively, to convert files or strings on the fly in your application, you may do so by calling `HTML2Slim.convert!(file, format)` where format is either :html or :erb.
 
 ## License
 
@@ -38,6 +46,6 @@ https://github.com/slim-template/html2slim
 
 ## ROADMAP
 
-1. Improve minitests
-2. ERB support, I guess...
+1. ERB support is pre-alpha, and works only for 90% of the cases. Lotsa weird regexes. Gotta improve that.
+2. Use temple.
 3. Merge with other *2slim gems. Would be handy.

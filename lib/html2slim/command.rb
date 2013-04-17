@@ -3,6 +3,7 @@ require 'html2slim'
 
 module HTML2Slim
   class Command
+
     def initialize(args)
       @args    = args
       @options = {}
@@ -23,8 +24,16 @@ module HTML2Slim
 
     protected
 
+    def format
+      @format ||= (self.class.to_s =~ /ERB/ ? :erb : :html)
+    end
+
+    def command_name
+      @command_name ||= format == :html ? "html2slim" : "erb2slim"
+    end
+
     def set_opts(opts)
-      opts.banner = "Usage: html2slim INPUT_FILENAME_OR_DIRECTORY [OUTPUT_FILENAME_OR_DIRECTORY] [options]"
+      opts.banner = "Usage: #{command_name} INPUT_FILENAME_OR_DIRECTORY [OUTPUT_FILENAME_OR_DIRECTORY] [options]"
 
       opts.on('--trace', :NONE, 'Show a full traceback on error') do
         @options[:trace] = true
@@ -36,11 +45,11 @@ module HTML2Slim
       end
 
       opts.on_tail('-v', '--version', 'Print version') do
-        puts "html2slim #{HTML2Slim::VERSION}"
+        puts "#{command_name} #{HTML2Slim::VERSION}"
         exit
       end
 
-      opts.on('-d', '--delete', 'Delete HTML files') do
+      opts.on('-d', '--delete', "Delete #{format.upcase} files") do
         @options[:delete] = true
       end
     end
@@ -81,7 +90,7 @@ module HTML2Slim
 
       @options[:output] = slim_file && slim_file != '-' ? File.open(slim_file, 'w') : $stdout
       # raise "|||#{self.class.inspect}|||"
-      @options[:output].puts HTML2Slim.convert!(in_file, (self.class.to_s =~ /ERB/ ? :erb : :html))
+      @options[:output].puts HTML2Slim.convert!(in_file, format)
       @options[:output].close
 
       File.delete(file) if @options[:delete]
