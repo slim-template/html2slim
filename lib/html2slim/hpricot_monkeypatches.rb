@@ -36,22 +36,12 @@ end
 class Hpricot::Elem
   def slim(lvl=0)
     r = ('  ' * lvl)
-    if self.name == 'div' and (self.has_attribute?('id') || self.has_attribute?('class'))
-      r += ''
-    else
-      r += self.name
-    end
-    if(self.has_attribute?('id'))
-      r += "##{self['id']}"
-      self.remove_attribute('id')
-    end
-    if(self.has_attribute?('class'))
-      r += ".#{self['class'].split(/\s+/).join('.')}"
-      self.remove_attribute('class')
-    end
-    unless attributes_as_html.to_s.strip.empty?
-      r += "[#{attributes_as_html.to_s.strip}]"
-    end
+    r += self.name unless self.name == 'div' and (self.has_attribute?('id') || self.has_attribute?('class'))
+    r += "##{self['id']}" if self.has_attribute?('id')
+    self.remove_attribute('id')    
+    r += ".#{self['class'].split(/\s+/).join('.')}" if self.has_attribute?('class')
+    self.remove_attribute('class')
+    r += "[#{attributes_as_html.to_s.strip}]" unless attributes_as_html.to_s.strip.empty?
     r
   end
   def to_slim(lvl=0)
