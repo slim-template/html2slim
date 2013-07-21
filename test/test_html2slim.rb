@@ -35,6 +35,13 @@ class TestHTML2Slim < MiniTest::Unit::TestCase
     end
   end
 
+  def test_convert_devise_erb
+    IO.popen("bin/erb2slim test/fixtures/devise-template.erb -", "r") do |f|
+      assert_equal File.read("test/fixtures/devise-template.slim"), f.read
+    end
+  end
+
+
   def test_convert_file_to_stdout
     File.open(html_file, "w") do |f|
       f.puts "<p><h1>Hello</h1></p>"
@@ -134,7 +141,7 @@ class TestHTML2Slim < MiniTest::Unit::TestCase
     slim = HTML2Slim.convert!(html)
     assert_instance_of String, Slim::Engine.new.call(slim.to_s)
   end
-  
+
   def assert_valid_from_erb?(source)
     html = File.open(source)
     slim = HTML2Slim.convert!(html, :erb)
