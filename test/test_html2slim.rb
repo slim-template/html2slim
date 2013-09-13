@@ -41,6 +41,11 @@ class TestHTML2Slim < MiniTest::Unit::TestCase
     end
   end
 
+  def test_convert_devise_erb_2
+    IO.popen("bin/erb2slim test/fixtures/devise-template-2.erb -", "r") do |f|
+      assert_equal File.read("test/fixtures/devise-template-2.slim"), f.read
+    end
+  end
 
   def test_convert_file_to_stdout
     File.open(html_file, "w") do |f|
