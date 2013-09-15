@@ -1,7 +1,7 @@
 require_relative 'helper'
 require 'tmpdir'
 
-class TestHTML2Slim < MiniTest::Unit::TestCase
+class TestHTML2Slim < MiniTest::Test
   def setup
     Slim::Engine.default_options[:id_delimiter] = '_'
     create_html_file
