@@ -1,0 +1,6 @@
+*.swp
+Gemfile.lock
+.bundle
+.redcar
+.rvmrc
+.yardoc
