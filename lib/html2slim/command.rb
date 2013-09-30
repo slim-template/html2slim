@@ -63,7 +63,7 @@ module HTML2Slim
       @options[:input] = file = "-" unless file
 
       if File.directory?(@options[:input])
-        Dir["#{@options[:input]}/**/*.html"].each { |file| _process(file, destination) }
+        Dir["#{@options[:input]}/**/*.#{format.to_s}"].each { |file| _process(file, destination) }
       else
         _process(file, destination)
       end
@@ -73,7 +73,8 @@ module HTML2Slim
 
     def _process(file, destination = nil)
       require 'fileutils'
-      slim_file = file.sub(/\.html$/, '.slim')
+      ext_reg = format == :html ? /\.html$/ : /\.erb$/
+      slim_file = file.sub(ext_reg, '.slim')
 
       if File.directory?(@options[:input]) && destination
         FileUtils.mkdir_p(File.dirname(slim_file).sub(@options[:input].chomp('/'), destination))
