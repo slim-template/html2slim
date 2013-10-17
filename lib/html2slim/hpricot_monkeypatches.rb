@@ -23,7 +23,15 @@ end
 
 class Hpricot::DocType
   def to_slim(lvl=0)
-    'doctype html'
+    if self.to_s.include? "xml"
+      self.to_s.include?("iso-8859-1") ? "doctype xml ISO-88591" : "doctype xml"
+    elsif self.to_s.include? "XHTML" or self.to_s.include? "HTML 4.01" 
+      available_versions = Regexp.union ["Basic", "1.1", "strict", "Frameset", "Mobile", "Transitional"]
+      version = self.to_s.match(available_versions).to_s.downcase
+      "doctype #{version}" 
+    else
+      "doctype html"
+    end
   end
 end
 
