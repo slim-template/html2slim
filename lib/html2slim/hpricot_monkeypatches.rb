@@ -23,7 +23,7 @@ end
 
 class Hpricot::DocType
   def to_slim(lvl=0)
-    'doctype'
+    'doctype html'
   end
 end
 
