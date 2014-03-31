@@ -2,6 +2,17 @@ require 'hpricot'
 
 Hpricot::XHTMLTransitional.tagset[:ruby] = [:code]
 
+module SlimText
+  def to_slim(lvl=0)
+    return nil if to_s.strip.empty?
+    ('  ' * lvl) + %(| #{to_s.gsub(/\s+/, ' ')})
+  end
+end
+
+class Hpricot::CData
+  include SlimText
+end
+
 class Hpricot::BogusETag
   def to_slim(lvl=0)
     nil
@@ -9,10 +20,7 @@ class Hpricot::BogusETag
 end
 
 class Hpricot::Text
-  def to_slim(lvl=0)
-    return nil if to_s.strip.empty?
-    ('  ' * lvl) + %(| #{to_s.gsub(/\s+/, ' ')})
-  end
+  include SlimText
 end
 
 class Hpricot::Comment
