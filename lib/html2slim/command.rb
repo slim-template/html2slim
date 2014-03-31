@@ -71,11 +71,15 @@ module HTML2Slim
 
     private
 
+    def input_is_dir?
+      File.directory? @options[:input]
+    end
+
     def _process(file, destination = nil)
       require 'fileutils'
       slim_file = file.sub(/\.#{format}/, '.slim')
 
-      if File.directory?(@options[:input]) && destination
+      if input_is_dir? && destination
         FileUtils.mkdir_p(File.dirname(slim_file).sub(@options[:input].chomp('/'), destination))
         slim_file.sub!(@options[:input].chomp('/'), destination)
       else
@@ -83,13 +87,12 @@ module HTML2Slim
       end
 
       in_file = if @options[:input] == "-"
-                  $stdin
-                else
-                  File.open(file, 'r')
-                end
+        $stdin
+      else
+        File.open(file, 'r')
+      end
 
       @options[:output] = slim_file && slim_file != '-' ? File.open(slim_file, 'w') : $stdout
-      # raise "|||#{self.class.inspect}|||"
       @options[:output].puts HTML2Slim.convert!(in_file, format)
       @options[:output].close
 
