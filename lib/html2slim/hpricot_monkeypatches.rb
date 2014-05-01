@@ -83,7 +83,7 @@ class Hpricot::Elem
   end
 
   def slim_class
-    has_class?? ".#{self['class'].split(/\s+/).join('.')}" : ""
+    has_class?? ".#{self['class'].strip.split(/\s+/).join('.')}" : ""
   end
 
   def slim_attributes
