@@ -1,7 +1,6 @@
 require_relative 'hpricot_monkeypatches'
 
 module HTML2Slim
-  B
   class Converter
     def to_s
       @slim
