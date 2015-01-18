@@ -1,0 +1,8 @@
+span
+  span
+    - record = list_record if local_assigns[:list_record] # compat with render :partial :collection
+    - columns ||= list_columns
+    - row_id ||= element_row_id(:action => :list, :id => record.id)
+    - tr_class = cycle("", "even-record") + ' ' + list_row_class(record)
+    - action_links ||= active_scaffold_config.action_links.member
+    - data_refresh ||= record.to_param
