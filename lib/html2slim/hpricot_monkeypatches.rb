@@ -47,7 +47,7 @@ class Hpricot::Elem
   def slim(lvl=0)
     r = '  ' * lvl
 
-    return r + slim_ruby_code if ruby?
+    return r + slim_ruby_code(r) if ruby?
 
     r += name unless skip_tag_name?
     r += slim_id
@@ -66,8 +66,8 @@ class Hpricot::Elem
 
   private
 
-  def slim_ruby_code
-    (code.strip[0] == "=" ? "" : "- ") + code.strip
+  def slim_ruby_code(r)
+    (code.strip[0] == "=" ? "" : "- ") + code.strip.gsub(/\n/, "\n#{r}- ")
   end
 
   def code

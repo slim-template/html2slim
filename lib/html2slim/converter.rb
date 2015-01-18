@@ -27,7 +27,7 @@ module HTML2Slim
       # when
       erb.gsub!(/<%-?\s*(when .+?)\s*-?%>/){ %(</ruby><ruby code="#{$1}">) }
       erb.gsub!(/<%\s*(end|}|end\s+-)\s*%>/, %(</ruby>))
-      erb.gsub!(/<%(.+?)\s*%>/){ %(<ruby code="#{$1.gsub(/"/, '&quot;')}"></ruby>) }
+      erb.gsub!(/<%(.+?)\s*-?%>/m){ %(<ruby code="#{$1.gsub(/"/, '&quot;')}"></ruby>) }
       @slim ||= Hpricot(erb).to_slim
     end
   end
