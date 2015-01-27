@@ -85,6 +85,8 @@ module HTML2Slim
       else
         slim_file = destination || slim_file
       end
+      
+      fail(ArgumentError, "Source and destination files can't be the same.") if @options[:input] != '-' && file == slim_file
 
       in_file = if @options[:input] == "-"
         $stdin
