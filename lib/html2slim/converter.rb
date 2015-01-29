@@ -23,7 +23,7 @@ module HTML2Slim
       # else
       erb.gsub!(/<%-?\s*else\s*-?%>/, %(</ruby><ruby code="else">))
       # elsif
-      erb.gsub!(/<%-?\s*(elsif .+?)\s*-?%>/){ %(</ruby><ruby code="#{$1}">) }
+      erb.gsub!(/<%-?\s*(elsif .+?)\s*-?%>/){ %(</ruby><ruby code="#{$1.gsub(/"/, '&quot;')}">) }
       # when
       erb.gsub!(/<%-?\s*(when .+?)\s*-?%>/){ %(</ruby><ruby code="#{$1}">) }
       erb.gsub!(/<%\s*(end|}|end\s+-)\s*%>/, %(</ruby>))

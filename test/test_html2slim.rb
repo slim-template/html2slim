@@ -52,6 +52,12 @@ class TestHTML2Slim < MiniTest::Test
     end
   end
 
+  def test_convert_elsif_block
+    IO.popen("bin/erb2slim test/fixtures/erb_elsif.erb -", "r") do |f|
+      assert_equal File.read("test/fixtures/erb_elsif.slim"), f.read
+    end
+  end
+
   def test_convert_file_to_stdout
     File.open(html_file, "w") do |f|
       f.puts "<p><h1>Hello</h1></p>"
