@@ -18,8 +18,8 @@ module HTML2Slim
 
       erb.gsub!(/<%(.+?)\s*\{\s*(\|.+?\|)?\s*%>/){ %(<%#{$1} do #{$2}%>) }
 
-      # while, case, if, for and blocks...
-      erb.gsub!(/<%(-\s+)?(\s*while .+?|\s*case .+?|\s*if .+?|\s*for .+?|.+?do\s*(\|.+?\|)?\s*)-?%>/){ %(<ruby code="#{$2.gsub(/"/, '&quot;')}">) }
+      # while, until, case, if, unless, for and blocks...
+      erb.gsub!(/<%(-\s+)?(\s*while .+?|\s*until .+?|\s*case .+?|\s*if .+?|\s*unless .+?|\s*for .+?|.+?do\s*(\|.+?\|)?\s*)-?%>/){ %(<ruby code="#{$2.gsub(/"/, '&quot;')}">) }
       # else
       erb.gsub!(/<%-?\s*else\s*-?%>/, %(</ruby><ruby code="else">))
       # elsif
