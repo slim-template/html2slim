@@ -44,6 +44,8 @@ class Hpricot::DocType
 end
 
 class Hpricot::Elem
+  BLANK_RE = /\A[[:space:]]*\z/
+
   def slim(lvl=0)
     r = '  ' * lvl
 
@@ -97,11 +99,11 @@ class Hpricot::Elem
   end
 
   def has_id?
-    has_attribute?('id')
+    has_attribute?('id') && !(BLANK_RE === self['id'])
   end
 
   def has_class?
-    has_attribute?('class')
+    has_attribute?('class') && !(BLANK_RE === self['class'])
   end
 
   def ruby?
