@@ -109,6 +109,12 @@ class TestHTML2Slim < MiniTest::Test
     assert_erb_to_slim '<% while @foo.next %>NEXT<% end %>', "- while @foo.next\n  | NEXT"
     # all togheter and mixed
     assert_erb_to_slim '<% while @foo.next %><% if 1 == 1 %><% for i in @foo.bar %>WORKS<% end %><% end %><% end %>', "- while @foo.next\n  - if 1 == 1\n    - for i in @foo.bar\n      | WORKS"
+    # unless
+    assert_erb_to_slim_with_and_without_leading_dash '<% unless @foo.done? %>NEXT<% end %>',
+                                                     "- unless @foo.done?\n  | NEXT"
+    # until
+    assert_erb_to_slim_with_and_without_leading_dash '<% until @foo.done? %>NEXT<% end %>',
+                                                     "- until @foo.done?\n  | NEXT"
   end
 
   private
@@ -129,6 +135,14 @@ class TestHTML2Slim < MiniTest::Test
     end
     IO.popen("bin/erb2slim #{erb_file} -", "r") do |f|
       assert_equal expected_slim, f.read.strip
+    end
+  end
+
+  def assert_erb_to_slim_with_and_without_leading_dash(actual_erb_without_leading_dash, expected_slim)
+    [actual_erb_without_leading_dash,
+     actual_erb_without_leading_dash.sub(/<% /, '<%- ')
+     ].each do |erb|
+      assert_erb_to_slim erb, expected_slim
     end
   end
 
