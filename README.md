@@ -1,3 +1,5 @@
+![Version](https://img.shields.io/gem/v/html2slim.svg)
+
 [![Build Status](https://travis-ci.org/slim-template/html2slim.png?branch=master)](https://travis-ci.org/slim-template/html2slim)
 
 [![Code climate](https://codeclimate.com/github/slim-template/html2slim.png)](https://codeclimate.com/github/slim-template/html2slim)
@@ -38,14 +40,14 @@ This project is released under the MIT license.
 
 ## Author
 
-[Maiz Lulkin] (https://github.com/joaomilho)
+[Maiz Lulkin] (https://github.com/joaomilho) and [contributors](https://github.com/slim-template/html2slim/graphs/contributors)
 
 ## OFFICIAL REPO
 
-https://github.com/slim-template/html2slim
+[https://github.com/slim-template/html2slim](https://github.com/slim-template/html2slim)
 
 ## ROADMAP
 
-1. ERB support is pre-alpha, and works only for 90% of the cases. Lotsa weird regexes. Gotta improve that.
+1. ERB support is beta, and works only for ~92.6% of the cases. Lotsa weird regexes. Gotta improve that.
 2. Use temple.
 3. Merge with other *2slim gems. Would be handy.
