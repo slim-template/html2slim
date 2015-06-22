@@ -84,6 +84,12 @@ class TestHTML2Slim < MiniTest::Test
     assert_html_to_slim html, slim
   end
 
+  def test_convert_leading_dashes_end
+    IO.popen("bin/erb2slim test/fixtures/erb_end.erb -", "r") do |f|
+      assert_equal File.read("test/fixtures/erb_end.slim"), f.read
+    end
+  end
+
   def test_erb_tags
     # simple
     assert_erb_to_slim '<% a = 1 %>', '- a = 1'
