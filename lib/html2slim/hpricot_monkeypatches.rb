@@ -20,7 +20,11 @@ class Hpricot::BogusETag
 end
 
 class Hpricot::Text
-  include SlimText
+  def to_slim(lvl=0)
+    str = content.to_s
+    return nil if str.strip.empty?
+    ('  ' * lvl) + %(| #{str.gsub(/\s+/, ' ')})
+  end
 end
 
 class Hpricot::Comment
