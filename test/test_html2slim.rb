@@ -115,6 +115,8 @@ class TestHTML2Slim < MiniTest::Test
     # until
     assert_erb_to_slim_with_and_without_leading_dash '<% until @foo.done? %>NEXT<% end %>',
                                                      "- until @foo.done?\n  | NEXT"
+    # comment
+    assert_erb_to_slim '<%# test comment %>', "/ test comment"
   end
 
   private

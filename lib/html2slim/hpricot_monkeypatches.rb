@@ -50,6 +50,7 @@ class Hpricot::Elem
     r = '  ' * lvl
 
     return r + slim_ruby_code(r) if ruby?
+    return r + slim_comment(r) if comment?
 
     r += name unless skip_tag_name?
     r += slim_id
@@ -70,6 +71,10 @@ class Hpricot::Elem
 
   def slim_ruby_code(r)
     (code.strip[0] == "=" ? "" : "- ") + code.strip.gsub(/\n/, "\n#{r}- ")
+  end
+
+  def slim_comment(r)
+    "/ #{attributes['content']}"
   end
 
   def code
@@ -112,6 +117,10 @@ class Hpricot::Elem
 
   def div?
     name == "div"
+  end
+
+  def comment?
+    name == "erb_comment"
   end
 end
 
