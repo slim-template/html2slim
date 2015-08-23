@@ -84,6 +84,12 @@ class TestHTML2Slim < MiniTest::Test
     assert_html_to_slim html, slim
   end
 
+  def test_escaped_text
+    text = "this is js code sample.&nbsp; &raquo; &lt;script&gt;alert(0)&lt;/script&gt;"
+    assert_html_to_slim text, "| #{text}"
+    assert_erb_to_slim text, "| #{text}"
+  end
+
   def test_erb_tags
     # simple
     assert_erb_to_slim_with_and_without_leading_dash '<% a = 1 %>', '- a = 1'
