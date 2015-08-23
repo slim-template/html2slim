@@ -4,3 +4,4 @@ Gemfile.lock
 .redcar
 .rvmrc
 .yardoc
+.DS_Store
