@@ -12,6 +12,14 @@ It's not perfect, but certainly it helps a lot!
 
 It's based on Hpricot. Yeah, I'm old school.
 
+## Installation
+
+Install HTML2Slim as a gem:
+
+```
+$ gem install html2slim
+```
+
 ## Usage
 
 You may convert files using the included executables `html2slim` and `erb2slim`.
