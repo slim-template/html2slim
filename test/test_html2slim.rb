@@ -34,6 +34,12 @@ class TestHTML2Slim < MiniTest::Test
     end
   end
 
+  def test_convert_doctypes_hmtl
+    IO.popen("bin/erb2slim test/fixtures/doctypes.html -", "r") do |f|
+      assert_equal File.read("test/fixtures/doctypes.slim"), f.read
+    end
+  end
+
   def test_convert_devise_erb
     IO.popen("bin/erb2slim test/fixtures/devise-template.erb -", "r") do |f|
       assert_equal File.read("test/fixtures/devise-template.slim"), f.read
