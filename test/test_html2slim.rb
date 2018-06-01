@@ -52,6 +52,12 @@ class TestHTML2Slim < MiniTest::Test
     end
   end
 
+  def test_convert_multiline_method_args
+    IO.popen("bin/erb2slim test/fixtures/multiline_method_args.erb -", "r") do |f|
+      assert_equal File.read("test/fixtures/multiline_method_args.slim"), f.read
+    end
+  end
+
   def test_convert_elsif_block
     IO.popen("bin/erb2slim test/fixtures/erb_elsif.erb -", "r") do |f|
       assert_equal File.read("test/fixtures/erb_elsif.slim"), f.read
