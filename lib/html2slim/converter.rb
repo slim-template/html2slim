@@ -14,7 +14,7 @@ module HTML2Slim
   class ERBConverter < Converter
     def initialize(file)
       # open.read makes it works for files & IO
-      erb = File.exists?(file) ? open(file).read : file
+      erb = File.exist?(file) ? open(file).read : file
 
       erb.gsub!(/<%(.+?)\s*\{\s*(\|.+?\|)?\s*%>/){ %(<%#{$1} do #{$2}%>) }
 
