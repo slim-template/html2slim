@@ -1,0 +1,8 @@
+= form_with url: search_path,
+      class: "search-form",
+      method: :get do |form|
+  .form-group
+    = form.text_field :query,
+          class: "form-control"
+  = form.submit "Search",
+        class: "btn"

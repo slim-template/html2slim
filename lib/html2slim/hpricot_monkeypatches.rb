@@ -73,7 +73,7 @@ class Hpricot::Elem
   private
 
   def slim_ruby_code(r)
-    (code.strip[0] == "=" ? "" : "- ") + code.strip.gsub(/\n/, "\n#{r}- ")
+    (code.strip[0] == "=" ? "" : "- ") + code.strip.gsub(/(?<!,)([ ]*\n)/, "\\1#{r}- ")
   end
 
   def code

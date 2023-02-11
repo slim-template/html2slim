@@ -19,7 +19,9 @@ module HTML2Slim
       erb.gsub!(/<%(.+?)\s*\{\s*(\|.+?\|)?\s*%>/){ %(<%#{$1} do #{$2}%>) }
 
       # case, if, for, unless, until, while, and blocks...
-      erb.gsub!(/<%(-\s+)?((\s*(case|if|for|unless|until|while) .+?)|.+?do\s*(\|.+?\|)?\s*)-?%>/){ %(<ruby code="#{$2.gsub(/"/, '&quot;')}">) }
+      statement_start = /\s*(?:case|if|for|unless|until|while) .+?/
+      method_start = /.+?(?:,\s*\n.+?)*do\s*(?:\|.+?\|)?\s*/
+      erb.gsub!(/<%(?:-\s+)?(#{statement_start}|#{method_start})-?%>/){ %(<ruby code="#{$1.gsub(/"/, '&quot;')}">) }
       # else
       erb.gsub!(/<%-?\s*else\s*-?%>/, %(</ruby><ruby code="else">))
       # elsif
