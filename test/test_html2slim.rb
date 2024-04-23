@@ -1,7 +1,7 @@
 require_relative 'helper'
 require 'tmpdir'
 
-class TestHTML2Slim < MiniTest::Test
+class TestHTML2Slim < Minitest::Test # rubocop:disable Metrics/ClassLength
   def setup
     create_html_file
   end
@@ -60,21 +60,21 @@ class TestHTML2Slim < MiniTest::Test
 
   def test_convert_file_to_stdout
     File.open(html_file, "w") do |f|
-      f.puts "<p><h1>Hello</h1></p>"
+      f.puts "<div><h1>Hello</h1></div>"
     end
 
     IO.popen("bin/html2slim #{html_file} -", "r") do |f|
-      assert_equal "p\n  h1\n    | Hello\n", f.read
+      assert_equal "div\n  h1\n    | Hello\n", f.read
     end
   end
 
   def test_convert_stdin_to_stdout
     File.open(html_file, "w") do |f|
-      f.puts "<p><h1>Hello</h1></p>"
+      f.puts "<div><h1>Hello</h1></div>"
     end
 
     IO.popen("cat #{html_file} | bin/html2slim", "r") do |f|
-      assert_equal "p\n  h1\n    | Hello\n", f.read
+      assert_equal "div\n  h1\n    | Hello\n", f.read
     end
   end
 
