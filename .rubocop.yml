@@ -1,0 +1,20 @@
+require:
+  - rubocop-performance
+
+AllCops:
+  NewCops: enable
+
+Metrics/MethodLength:
+  Max: 25
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/PerlBackrefs:
+  Enabled: false

@@ -17,8 +17,9 @@ Gem::Specification.new do |s|
   s.files            = `git ls-files --  lib/* bin/* README.md`.split("\n")
   s.executables      = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
 
-  s.add_dependency "hpricot"
+  s.add_dependency 'nokogiri'
   s.add_development_dependency 'minitest'
   s.add_development_dependency 'rake'
+  s.add_development_dependency 'rubocop-performance'
   s.add_development_dependency "slim", [">= 1.0.0"]
 end
