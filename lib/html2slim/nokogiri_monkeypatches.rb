@@ -136,3 +136,19 @@ class Nokogiri::XML::Document
     end
   end
 end
+
+class Nokogiri::XML::Comment
+  def to_slim(lvl = 0)
+    r = '  ' * lvl
+
+    # Render as a Slim comment, multiline if necessary
+    str = content.strip
+    return nil if str.empty?
+
+    if str.include?("\n")
+      "#{r}/!\n#{r}  " + str.gsub("\n", "\n#{r}  ")
+    else
+      "#{r}/! #{str}"
+    end
+  end
+end
