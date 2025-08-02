@@ -11,13 +11,23 @@ class TestHTML2Slim < Minitest::Test # rubocop:disable Metrics/ClassLength
   end
 
   Dir.glob("test/fixtures/*.html").each do |file|
-    define_method("test_template_#{File.basename(file, '.html')}") do
+    basename = File.basename(file, '.html')
+
+    define_method("test_template_#{basename}") do
       assert_valid_from_html?(file)
+    end
+
+    define_method("test_convert_#{basename}") do
+      IO.popen("bin/html2slim #{file} -", "r") do |f|
+        assert_equal File.read("test/fixtures/#{basename}.slim"), f.read
+      end
     end
   end
 
-  Dir.glob("test/fixtures/*.html.erb").each do |file|
-    define_method("test_template_#{File.basename(file, '.html')}") do
+  Dir.glob("test/fixtures/*.erb").each do |file|
+    basename = File.basename(file, '.erb')
+
+    define_method("test_template_#{basename}") do
       assert_valid_from_erb?(file)
     end
   end
